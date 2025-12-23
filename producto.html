@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto - SuperClick</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="leaf.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Volver al catálogo
+                </a>
+                <h1 class="logo">SuperClick</h1>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Todos</a></li>
+                    <li><a href="index.html" class="nav-link" data-category="frutas-verduras">Frutas y Verduras</a></li>
+                    <li><a href="index.html" class="nav-link" data-category="panaderia">Panadería</a></li>
+                    <li><a href="index.html" class="nav-link" data-category="carnes">Carnes</a></li>
+                    <li><a href="index.html" class="nav-link" data-category="pescado">Pescado</a></li>
+                    <li><a href="index.html" class="nav-link" data-category="bebidas">Bebidas</a></li>
+                    <li><a href="index.html" class="nav-link" data-category="limpieza">Limpieza</a></li>
+                    <li><a href="index.html" class="nav-link" data-category="dulces-snacks">Dulces y Snacks</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-detail" id="product-detail-container">
+            <!-- El detalle del producto se carga dinámicamente -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2025 SuperClick. Todos los derechos reservados.</p>
+            <p class="footer-subtext">Desarrollado para Diseño de Interfaces Web - DAW</p>
+        </div>
+    </footer>
+
+    <button id="ir-arriba" class="ir-arriba-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

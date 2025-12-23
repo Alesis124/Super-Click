@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperClick - Supermercado Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="leaf.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">SuperClick</h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">Todos</a></li>
+                    <li><a href="#" class="nav-link" data-category="frutas-verduras">Frutas y Verduras</a></li>
+                    <li><a href="#" class="nav-link" data-category="panaderia">Panadería</a></li>
+                    <li><a href="#" class="nav-link" data-category="carnes">Carnes</a></li>
+                    <li><a href="#" class="nav-link" data-category="pescado">Pescado</a></li>
+                    <li><a href="#" class="nav-link" data-category="bebidas">Bebidas</a></li>
+                    <li><a href="#" class="nav-link" data-category="limpieza">Limpieza</a></li>
+                    <li><a href="#" class="nav-link" data-category="dulces-snacks">Dulces y Snacks</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">Productos Destacados de Temporada</h2>
+            <div class="featured-grid" id="featured-products">
+                <!-- Los productos destacados se cargan dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="productos-section">
+        <div class="container">
+            <h2 class="section-title">Todos los Productos</h2>
+            <div class="products-grid" id="all-products">
+                <!-- Todos los productos se cargan dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2025 SuperClick. Todos los derechos reservados.</p>
+            <p class="footer-subtext">Desarrollado para Diseño de Interfaces Web - DAW</p>
+        </div>
+    </footer>
+
+    <button id="ir-arriba" class="ir-arriba-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
