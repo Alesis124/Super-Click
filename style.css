@@ -121,11 +121,11 @@ body {
     background-color: var(--primary);
 }
 
-.nav-link[href="/"].active:not([data-category]) {
+.nav-link[href="index.html"].active:not([data-category]) {
     color: var(--secondary);
 }
 
-.nav-link[href="/"].active:not([data-category])::after {
+.nav-link[href="index.html"].active:not([data-category])::after {
     background-color: var(--secondary);
 }
 

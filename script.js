@@ -49,7 +49,7 @@ function crearProductCard(producto, esDestacado = false) {
                 </div>
                 <div class="product-footer">
                     <div class="product-price">€${producto.precio.toFixed(2)}</div>
-                    <a href="/producto?id=${producto.id}" class="product-button view-product">Ver producto</a>
+                    <a href="producto.html?id=${producto.id}" class="product-button view-product">Ver producto</a>
                 </div>
             </div>
         </div>
@@ -122,7 +122,6 @@ async function initIndex() {
         allProductsGrid.innerHTML = productos.map(p => crearProductCard(p)).join('');
     }
     
-    // Manejar hash para filtros
     const hash = window.location.hash;
     if (hash) {
         const categoriaId = hash.replace('#', '');
@@ -165,17 +164,7 @@ async function initProducto() {
                         ${producto.stock ? 'Disponible' : 'No disponible'}
                     </span>
                 </div>
-                <a href="/informacion?id=${producto.id}" class="detail-button info-button">Más información</a>
-            </div>
-        `;
-    } else if (container) {
-        // Mostrar error si no encuentra el producto
-        container.innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-triangle fa-3x"></i>
-                <h2>Producto no encontrado</h2>
-                <p>El producto que buscas no existe o ha sido eliminado.</p>
-                <a href="/" class="detail-button">Volver al inicio</a>
+                <a href="informacion.html?id=${producto.id}" class="detail-button info-button">Más información</a>
             </div>
         `;
     }
@@ -233,17 +222,8 @@ async function initInformacion() {
         `;
         
         if (backButton) {
-            backButton.href = `/producto?id=${producto.id}`;
+            backButton.href = `producto.html?id=${producto.id}`;
         }
-    } else if (container) {
-        container.innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-triangle fa-3x"></i>
-                <h2>Producto no encontrado</h2>
-                <p>No se pudo cargar la información del producto.</p>
-                <a href="/" class="detail-button">Volver al inicio</a>
-            </div>
-        `;
     }
     
     setupEventListeners();
@@ -280,6 +260,7 @@ function filtrarPorCategoria(categoriaId, doScroll = true) {
         
         if (doScroll) {
             if (categoriaId === 'all') {
+                // Si es Todos sube pa arriba
                 setTimeout(() => {
                     window.scrollTo({
                         top: 0,
@@ -287,6 +268,7 @@ function filtrarPorCategoria(categoriaId, doScroll = true) {
                     });
                 }, 100);
             } else {
+                // Si es otra categoria se mueve a los productos
                 setTimeout(() => {
                     const seccionProductos = document.getElementById('productos-section');
                     if (seccionProductos) {
@@ -312,44 +294,34 @@ function updateActiveNavigation(categoriaId) {
     navLinks.forEach(link => {
         link.classList.remove('active');
         
-        // Verificar si el enlace apunta a la raíz y es "Todos"
-        if (link.getAttribute('href') === '/' && !link.hasAttribute('data-category')) {
-            if (categoriaId === 'all') {
+        if (link.href.includes('index.html')) {
+            if (categoriaId === 'all' && !link.hasAttribute('data-category')) {
+                link.classList.add('active');
+            } else if (link.getAttribute('data-category') === categoriaId) {
                 link.classList.add('active');
             }
         }
-        // Verificar si el enlace tiene la categoría correcta
-        else if (link.getAttribute('data-category') === categoriaId) {
-            link.classList.add('active');
-        }
     });
 }
+
 
 function setupNavigation() {
     const navLinks = document.querySelectorAll('.nav-link[data-category]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const categoriaId = this.getAttribute('data-category');
-            
-            // Actualizar URL con hash
-            window.location.hash = categoriaId;
-            
-            // Filtrar productos
-            filtrarPorCategoria(categoriaId);
+            if (this.href.includes('index.html')) {
+                e.preventDefault();
+                const categoriaId = this.getAttribute('data-category');
+                filtrarPorCategoria(categoriaId);
+            }
         });
     });
     
     // Enlace Todos
-    const allLink = document.querySelector('.nav-link[href="/"]:not([data-category])');
+    const allLink = document.querySelector('.nav-link[href="index.html"]:not([data-category])');
     if (allLink) {
         allLink.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            // Limpiar hash
-            window.location.hash = '';
-            
-            // Filtrar para mostrar todos
             filtrarPorCategoria('all');
         });
     }
@@ -376,34 +348,14 @@ function setupEventListeners() {
     }
 }
 
-// Función para detectar la página actual CORRECTAMENTE
-function detectCurrentPage() {
-    const path = window.location.pathname;
-    console.log('Ruta detectada:', path); // Para debugging
-    
-    // Usar startsWith para mayor seguridad
-    if (path.startsWith('/producto') || path === '/producto') {
-        return 'producto';
-    } else if (path.startsWith('/informacion') || path === '/informacion') {
-        return 'informacion';
-    } else {
-        return 'index';
-    }
-}
-
-// Inicialización principal
 document.addEventListener('DOMContentLoaded', function() {
-    const currentPage = detectCurrentPage();
-    console.log('Página detectada:', currentPage); // Para debugging
+    const path = window.location.pathname;
     
-    switch(currentPage) {
-        case 'producto':
-            initProducto();
-            break;
-        case 'informacion':
-            initInformacion();
-            break;
-        default:
-            initIndex();
+    if (path.includes('producto.html')) {
+        initProducto();
+    } else if (path.includes('informacion.html')) {
+        initInformacion();
+    } else {
+        initIndex();
     }
 });
