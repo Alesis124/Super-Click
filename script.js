@@ -49,7 +49,7 @@ function crearProductCard(producto, esDestacado = false) {
                 </div>
                 <div class="product-footer">
                     <div class="product-price">€${producto.precio.toFixed(2)}</div>
-                    <a href="producto.html?id=${producto.id}" class="product-button view-product">Ver producto</a>
+                    <a href="https://super-click.alesismedia.es/producto?id=${producto.id}" class="product-button view-product">Ver producto</a>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@ async function initProducto() {
                         ${producto.stock ? 'Disponible' : 'No disponible'}
                     </span>
                 </div>
-                <a href="informacion.html?id=${producto.id}" class="detail-button info-button">Más información</a>
+                <a href="https://super-click.alesismedia.es/informacion?id=${producto.id}" class="detail-button info-button">Más información</a>
             </div>
         `;
     }
@@ -222,7 +222,7 @@ async function initInformacion() {
         `;
         
         if (backButton) {
-            backButton.href = `producto.html?id=${producto.id}`;
+            backButton.href = `https://super-click.alesismedia.es/producto?id=${producto.id}`;
         }
     }
     
@@ -294,7 +294,7 @@ function updateActiveNavigation(categoriaId) {
     navLinks.forEach(link => {
         link.classList.remove('active');
         
-        if (link.href.includes('index.html')) {
+        if (link.href.includes('https://super-click.alesismedia.es/inicio')) {
             if (categoriaId === 'all' && !link.hasAttribute('data-category')) {
                 link.classList.add('active');
             } else if (link.getAttribute('data-category') === categoriaId) {
@@ -309,7 +309,7 @@ function setupNavigation() {
     const navLinks = document.querySelectorAll('.nav-link[data-category]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            if (this.href.includes('index.html')) {
+            if (this.href.includes('https://super-click.alesismedia.es/inicio')) {
                 e.preventDefault();
                 const categoriaId = this.getAttribute('data-category');
                 filtrarPorCategoria(categoriaId);
@@ -318,7 +318,7 @@ function setupNavigation() {
     });
     
     // Enlace Todos
-    const allLink = document.querySelector('.nav-link[href="index.html"]:not([data-category])');
+    const allLink = document.querySelector('.nav-link[href="https://super-click.alesismedia.es/inicio"]:not([data-category])');
     if (allLink) {
         allLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -351,9 +351,9 @@ function setupEventListeners() {
 document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
     
-    if (path.includes('producto.html')) {
+    if (path.includes('https://super-click.alesismedia.es/producto')) {
         initProducto();
-    } else if (path.includes('informacion.html')) {
+    } else if (path.includes('https://super-click.alesismedia.es/informacion')) {
         initInformacion();
     } else {
         initIndex();
